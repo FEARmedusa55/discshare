@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "com.discshare.client.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"SoundManagerMixin",
+		"HudMixin",
+		"PlayerTabOverlayMixin",
+		"AvatarRendererMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

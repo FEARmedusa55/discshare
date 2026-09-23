@@ -1,0 +1,22 @@
+{
+	"schemaVersion": 1,
+	"id": "discshare",
+	"version": "${version}",
+	"name": "DiscShare",
+	"description": "Rename a music disc in an anvil with a song tag and everyone with the mod hears that song from the jukebox. Works on servers that don't have the mod.",
+	"authors": ["FEAR"],
+	"license": "MIT",
+	"environment": "client",
+	"entrypoints": {
+		"client": ["com.discshare.client.DiscShareClient"]
+	},
+	"mixins": [
+		{ "config": "discshare.client.mixins.json", "environment": "client" }
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

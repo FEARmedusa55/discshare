@@ -1,0 +1,63 @@
+DiscShare build started Tue 09/22/2026 22:32:14.52 
+JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-25.0.4.101-hotspot 
+openjdk version "25.0.4.1" 2026-08-18 LTS
+OpenJDK Runtime Environment Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS)
+OpenJDK 64-Bit Server VM Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS, mixed mode, sharing)
+GRADLE=C:\Users\cltnl_bgplsuk\.gradle\wrapper\dists\gradle-9.5.1-bin\iq79hdu3mqx29lgffhp8bfmx\gradle-9.5.1\bin\gradle.bat 
+--- JDKs in .jdks: 
+.ms-21.0.9.intellij
+ms-21.0.9
+--- Gradle dists: 
+CACHEDIR.TAG
+gradle-5.6.4-bin
+gradle-6.1.1-bin
+gradle-9.2-bin
+gradle-9.2.0-bin
+gradle-9.5.1-bin
+gradle-9.6.1-bin
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.5.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :
+Fabric Loom: 1.17.21
+
+> Task :wrapper UP-TO-DATE
+
+BUILD SUCCESSFUL in 3s
+1 actionable task: 1 up-to-date
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.5.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :
+Fabric Loom: 1.17.21
+
+> Task :compileJava NO-SOURCE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :compileClientJava
+> Task :processClientResources UP-TO-DATE
+> Task :processIncludeJars UP-TO-DATE
+> Task :clientClasses
+> Task :compileTestJava NO-SOURCE
+> Task :jar
+> Task :processTestResources NO-SOURCE
+> Task :assemble
+> Task :testClasses UP-TO-DATE
+> Task :test NO-SOURCE
+> Task :validateAccessWidener NO-SOURCE
+> Task :check UP-TO-DATE
+> Task :build
+
+BUILD SUCCESSFUL in 5s
+5 actionable tasks: 2 executed, 3 up-to-date
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.5.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :
+Fabric Loom: 1.17.21
+
+> Task :dumpClasspath UP-TO-DATE
+
+BUILD SUCCESSFUL in 3s
+1 actionable task: 1 up-to-date
+BUILD OK 

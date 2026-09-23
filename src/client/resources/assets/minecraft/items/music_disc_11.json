@@ -1,0 +1,17 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "discshare:has_texture",
+    "on_true": {
+      "type": "minecraft:special",
+      "base": "minecraft:item/music_disc_11",
+      "model": {
+        "type": "discshare:disc"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/music_disc_11"
+    }
+  }
+}
