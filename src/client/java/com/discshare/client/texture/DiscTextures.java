@@ -24,7 +24,7 @@ public final class DiscTextures {
 
 	private sealed interface State permits Loading, Ready, Missing {}
 	private record Loading() implements State {}
-	private record Ready(Identifier id) implements State {}
+	private record Ready(Identifier id, DiscShape shape) implements State {}
 	private record Missing(long sinceMs) implements State {}
 
 	private static final Map<String, State> STATES = new ConcurrentHashMap<>();
@@ -60,14 +60,22 @@ public final class DiscTextures {
 						throw new IllegalArgumentException("texture larger than 128x128");
 					}
 					Identifier id = Identifier.fromNamespaceAndPath("discshare", "disc/" + key.toLowerCase().replaceAll("[^a-z0-9_]", "_"));
+					DiscShape shape = DiscShape.of(id, img); // read pixels before handing the image over
 					mc.getTextureManager().register(id, new DynamicTexture(() -> "DiscShare " + key, img));
-					STATES.put(key, new Ready(id));
+					STATES.put(key, new Ready(id, shape));
 				} catch (Exception e) {
 					DiscShareClient.LOGGER.warn("Bad texture for {}", key, e);
 					STATES.put(key, new Missing(System.currentTimeMillis()));
 				}
 			});
 		});
+	}
+
+	/** The texture plus its outline (for drawing item edges), or null if none (yet). */
+	public static DiscShape shape(ItemStack stack) {
+		if (get(stack) == null) return null;
+		DiscTag tag = DiscTag.fromStack(stack);
+		return STATES.get(tag.key()) instanceof Ready r ? r.shape() : null;
 	}
 
 	/** Forget everything (e.g. after changing servers) so textures are fetched fresh. */

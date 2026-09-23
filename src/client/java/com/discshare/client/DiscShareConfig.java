@@ -24,6 +24,16 @@ public class DiscShareConfig {
 	 * Everyone on a server should use the same value to stay in sync.
 	 */
 	public long startDelayMs = 1500;
+	/** Download and convert songs on this PC with yt-dlp + ffmpeg (found or auto-downloaded) instead of on the server. */
+	public boolean convertLocally = true;
+	/** If converting on this PC fails, ask the server to convert it instead (only works if the server has it enabled). */
+	public boolean serverFallback = false;
+	/** Optional paths to programs you already have. Leave empty to find/download them automatically. */
+	public String ytDlpPath = "";
+	public String ffmpegPath = "";
+	public String denoPath = "";
+	/** Volume of custom disc songs, 0-100 (on top of Minecraft's Jukebox/Note Blocks slider). Set with /discshare volume. */
+	public int volume = 100;
 	/** Show a small disc icon next to the names of players who have DiscShare (tab list and name tags). */
 	public boolean showModIcons = true;
 	/** Bumped when defaults change so old config files get the new defaults. */
@@ -32,6 +42,16 @@ public class DiscShareConfig {
 	public double guessRadius = 6.0;
 	/** How long (ms) after a player stops holding a tagged disc it can still be matched to a jukebox. */
 	public long guessWindowMs = 3000;
+
+	/** Write the current settings back to discshare.json. */
+	public void save() {
+		Path file = FabricLoader.getInstance().getConfigDir().resolve("discshare.json");
+		try (Writer w = Files.newBufferedWriter(file)) {
+			GSON.toJson(this, w);
+		} catch (Exception e) {
+			DiscShareClient.LOGGER.warn("Couldn't save discshare.json", e);
+		}
+	}
 
 	public static DiscShareConfig load() {
 		Path file = FabricLoader.getInstance().getConfigDir().resolve("discshare.json");

@@ -1,0 +1,6 @@
+name: DiscShareHelper
+version: '${version}'
+main: com.discshare.helper.DiscShareHelper
+api-version: '26.2'
+description: Tells players using the DiscShare client mod which named disc is in each jukebox. Does nothing for players without the mod.
+author: FEAR

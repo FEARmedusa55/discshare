@@ -1,0 +1,27 @@
+plugins {
+	id 'java'
+}
+
+group = 'com.discshare'
+version = '0.1.0'
+
+repositories {
+	mavenCentral()
+	maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+}
+
+dependencies {
+	compileOnly 'io.papermc.paper:paper-api:26.2.build.128-stable'
+}
+
+java {
+	toolchain.languageVersion = JavaLanguageVersion.of(25)
+}
+
+processResources {
+	def version = project.version
+	inputs.property 'version', version
+	filesMatching('plugin.yml') {
+		expand 'version': version
+	}
+}

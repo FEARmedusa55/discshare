@@ -101,6 +101,7 @@ public final class JukeboxManager {
 			// Give the block update (HAS_RECORD) time to arrive after a disc goes in.
 			if (now - s.createdAtMs() < 2000) return false;
 			if (!hasDisc(mc, e.getKey())) {
+				s.stopNow(); // also cancels it if it's still loading
 				sm.stop(s);
 				VANILLA_AT.remove(e.getKey());
 				return true;
@@ -184,7 +185,10 @@ public final class JukeboxManager {
 	private static void start(BlockPos pos, DiscTag tag, long startedAtMs) {
 		var sm = Minecraft.getInstance().getSoundManager();
 		CustomDiscSound old = ACTIVE.remove(pos);
-		if (old != null) sm.stop(old); // a different disc went into the same jukebox
+		if (old != null) {
+			old.stopNow();
+			sm.stop(old);
+		} // a different disc went into the same jukebox
 		CustomDiscSound custom = new CustomDiscSound(tag, pos, startedAtMs);
 		ACTIVE.put(pos.immutable(), custom);
 		sm.play(custom);

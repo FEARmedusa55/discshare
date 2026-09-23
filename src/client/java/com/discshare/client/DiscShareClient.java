@@ -32,6 +32,12 @@ public class DiscShareClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		CONFIG = DiscShareConfig.load();
+		Commands.register();
+		AnvilTexture.register(); // "Disc texture" button in the anvil
+		Portable.register(); // key (default P) to play the disc in your off hand
+		ClientTickEvents.END_CLIENT_TICK.register(Portable::tick);
+		// Find or download yt-dlp/ffmpeg in the background now, so the first song doesn't wait for it.
+		if (CONFIG.convertLocally) com.discshare.client.local.Tools.ensure();
 
 		// Track who is holding tagged discs.
 		ClientTickEvents.END_CLIENT_TICK.register(JukeboxManager::tick);
@@ -53,6 +59,7 @@ public class DiscShareClient implements ClientModInitializer {
 			JukeboxManager.clear();
 			Presence.clear();
 			Prefetch.clear();
+			client.execute(Portable::clear);
 			client.execute(DiscTextures::clear);
 		});
 
